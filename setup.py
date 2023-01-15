@@ -8,7 +8,7 @@ setup(name='clean-folder_from_ZCO',
       license='MIT',
       classifiers=['Programming Language :: Python :: 3', 
                   'License :: OSI Approved :: MIT License', 
-                  'Operating System :: OS Independent']
+                  'Operating System :: OS Independent'],
       author='Constantine Zagorodnyi',
       author_email='Constantine2903@gmail.com',
       packages=find_namespace_packages(), 
