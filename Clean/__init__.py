@@ -1,1 +1,0 @@
-from Clean import main as clean
