@@ -1,5 +1,5 @@
 import sys
-from Normalize import normalize
+from normalize import normalize
 from pathlib import Path
 from shutil import move, rmtree, unpack_archive
 from os import rename, makedirs, listdir, remove
