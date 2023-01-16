@@ -3,6 +3,42 @@ from normalize import normalize
 from pathlib import Path
 from shutil import move, rmtree, unpack_archive
 from os import rename, makedirs, listdir, remove
+CYRILLIC_SYMBOLS = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяєіїґ"
+TRANSLATION = ("a", "b", "v", "g", "d", "e", "e", "j", "z", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u",
+               "f", "h", "ts", "ch", "sh", "sch", "", "y", "", "e", "yu", "ya", "je", "i", "ji", "g")
+
+TRANS = {}
+for c, l in zip(CYRILLIC_SYMBOLS, TRANSLATION):
+    TRANS[ord(c)] = l
+    TRANS[ord(c.upper())] = l.upper()    
+
+def normalize(string: str):
+    '''
+    Recieve string. If string is a file name - remove the suffix.
+    Split string to list. 
+    For each char of list applies the following processing:
+    if chat is a cyrillic symbol - transliterate it to latinic symbol \ 's
+    if char is a digit - skips it
+    if char is any else - replace it by _
+    Return reprocessed string. If string is a file name - add the unprocessed suffix
+    '''
+    suffix = Path(string).suffix
+    if not suffix:
+        string_list = list(string)
+    else:
+       string_list = list(string[:string.rfind(suffix)])
+    for ch, num in zip(string_list, range(len(string_list))):
+        if ch in CYRILLIC_SYMBOLS or ch in CYRILLIC_SYMBOLS.upper():
+            string_list[num] = ch.translate(TRANS)
+        elif ch.isdigit():
+            continue
+        elif ch.isalpha():
+            if not ('a' <= ch <= 'z' or 'A' <= ch <= "Z"):
+                string_list[num] = ch.casefold()
+        else:
+            string_list[num] = '_'  
+                
+    return ''.join(string_list) + suffix
 
 suffix_navigator = {'изображения':('JPEG', 'PNG', 'JPG', 'SVG')
                     , 'видео файлы':('AVI', 'MP4', 'MOV', 'MKV')
