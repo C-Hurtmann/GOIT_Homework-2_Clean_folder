@@ -12,5 +12,5 @@ setup(name='GOIT_homework_2_clean-folder_ZCO',
       author='Constantine Zagorodnyi',
       author_email='Constantine2903@gmail.com',
       packages=find_namespace_packages(), 
-      entry_points={'console_scripts':'clean-folder=clean_folder.clean:main'}
+      entry_points={'console_scripts':['clean-folder=clean_folder.clean:main']}
 )
