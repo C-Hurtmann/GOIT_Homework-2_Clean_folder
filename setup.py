@@ -2,7 +2,7 @@ from setuptools import setup, find_namespace_packages
 
 
 setup(name='GOIT_homework_2_clean-folder_ZCO',
-      version='0.1.2',
+      version='0.3.0',
       description='Sort specified folder to subfolders by their suffix (other subfolders will be disposed). Rename files to ASCII format. Unpack the archives',
       url='https://github.com/C-Hurtmann/GOIT_Homework-2_Clean_folder',
       license='MIT',
